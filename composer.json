@@ -1,6 +1,6 @@
 {
     "name": "nlpcloud/nlpcloud-client",
-    "description": "NLP Cloud serves all the spaCy pre-trained models, and your own custom models, through a RESTful API ready for production.\n\nThis is the PHP client for the API.\n\nMore details here: https://nlpcloud.io\n\nDocumentation: https://docs.nlpcloud.io\n\nGithub: https://github.com/nlpcloud/nlpcloud-python",
+    "description": "NLP Cloud serves all the spaCy pre-trained models, and your own custom models, through a RESTful API ready for production. This is the PHP client for the API. More details here: https://nlpcloud.io. Documentation: https://docs.nlpcloud.io. Github: https://github.com/nlpcloud/nlpcloud-php",
     "homepage": "http://github.com/nlpcloud/nlpcloud-php",
     "license": "MIT",
     "keywords": [
