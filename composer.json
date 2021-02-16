@@ -11,7 +11,7 @@
         "data science",
         "nlpcloud"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "Julien Salinas",
@@ -19,7 +19,7 @@
         }
     ],
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "NLPCloud": "src/"
         }
     },
