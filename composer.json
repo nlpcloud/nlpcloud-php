@@ -19,8 +19,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "NLPCloud": "src/"
+        "psr-4": {
+            "NLPCloud\\": "src/"
         }
     },
     "require": {

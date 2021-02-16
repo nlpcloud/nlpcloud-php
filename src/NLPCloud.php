@@ -2,7 +2,7 @@
 
 namespace NLPCloud;
 
-class Client
+class NLPCloud
 {
     const API_VERSION = 'v1';
     const BASE_URL = 'https://api.nlpcloud.io';
