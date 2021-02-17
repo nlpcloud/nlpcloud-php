@@ -2,6 +2,7 @@
 
 namespace NLPCloud;
 
+
 class NLPCloud
 {
     const API_VERSION = 'v1';
@@ -26,13 +27,11 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        $body = $response->body;
-
-        if (isset($body->error_code)) {
-            throw new \Exception($body->error_code . ': ' . $body->detail);
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
-        return $body->detail;
+        return $response->body;
     }
 
     private function __apiGet($endpoint)
@@ -43,13 +42,12 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        $body = $response->body;
 
-        if (isset($body->error_code)) {
-            throw new \Exception($body->error_code . ': ' . $body->detail);
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
-        return $body->detail;
+        return $response->body;
     }
 
     public function entities($userInput)
@@ -62,7 +60,7 @@ class NLPCloud
     }
     public function sentenceDependencies($userInput)
     {
-        return $this->__apiPost('sentenceDependencies', $userInput);
+        return $this->__apiPost('sentence-dependencies', $userInput);
     }
     public function libVersions()
     {
