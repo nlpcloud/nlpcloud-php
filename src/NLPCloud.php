@@ -16,12 +16,12 @@ class NLPCloud
         $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/' . $model;
     }
 
-    private function __apiPost($endpoint, $userInput)
+    public function entities($text)
     {
         $payload = array(
-            'text' => $userInput,
+            'text' => $text,
         );
-        $response = \Httpful\Request::post($this->rootURL . '/' . $endpoint, $payload)
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'entities', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
@@ -34,14 +34,18 @@ class NLPCloud
         return $response->body;
     }
 
-    private function __apiGet($endpoint)
+    public function classification($text, $labels, $multiClass)
     {
-        $response = \Httpful\Request::get($this->rootURL . '/' . $endpoint)
+        $payload = array(
+            'text' => $text,
+            'labels' => $labels,
+            'multiClass' => $multiClass
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'classification', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
             ->send();
-
 
         if ($response->code != 200) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
@@ -50,20 +54,110 @@ class NLPCloud
         return $response->body;
     }
 
-    public function entities($userInput)
+    public function sentiment($text)
     {
-        return $this->__apiPost('entities', $userInput);
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'sentiment', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
     }
-    public function dependencies($userInput)
+
+    public function question($context, $question)
     {
-        return $this->__apiPost('dependencies', $userInput);
+        $payload = array(
+            'context' => $context,
+            'question' => $question
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'question', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
     }
-    public function sentenceDependencies($userInput)
+
+    public function summarization($text)
     {
-        return $this->__apiPost('sentence-dependencies', $userInput);
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'summarization', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
     }
+
+    public function dependencies($text)
+    {
+        $payload = array(
+            'text' => $text,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'dependencies', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function sentenceDependencies($text)
+    {
+        $payload = array(
+            'text' => $text,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'sentence-dependencies', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function libVersions()
     {
-        return $this->__apiGet('version');
+        $response = \Httpful\Request::get($this->rootURL . '/' . 'versions')
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
     }
 }
