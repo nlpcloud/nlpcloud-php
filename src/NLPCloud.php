@@ -109,6 +109,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function translation($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'translation', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function dependencies($text)
     {
         $payload = array(
