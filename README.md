@@ -2,7 +2,7 @@
 
 This is a PHP client for the NLP Cloud API: https://docs.nlpcloud.io
 
-NLP Cloud serves high performance pre-trained models for NER, sentiment-analysis, classification, summarization, question answering, and POS tagging, ready for production, served through a REST API. 
+NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, text generation, question answering, machine translation, language detection, tokenization, POS tagging, and dependency parsing. It is ready for production, served through a REST API. 
 
 Pre-trained models are the spaCy models and some transformers-based models from Hugging Face. You can also deploy your own transformers-based models, or spaCy models.
 
@@ -97,6 +97,14 @@ use NLPCloud\NLPCloud;
 $client = new \NLPCloud\NLPCloud('<model>','<your token>');
 ```
 
+If you want to use a GPU, pass `true` as a 3rd argument.
+
+```php
+use NLPCloud\NLPCloud;
+
+$client = new \NLPCloud\NLPCloud('<model>','<your token>', true);
+```
+
 ### Entities Endpoint
 
 Call the `entities()` method and pass the text you want to perform named entity recognition (NER) on.
@@ -148,7 +156,6 @@ The above command returns a JSON object.
 
 Call the `summarization()` method and pass the text you want to summarize.
 
-**Note that your block of text should not exceed 1024 words, otherwise you will get an error. Also note that this model works best for blocks of text between 56 and 142 words.**
 
 ```php
 client.summarization("<Your text to summarize>")
@@ -162,6 +169,26 @@ Call the `translation()` method and pass the text you want to translate.
 
 ```php
 client.translation("<Your text to translate>")
+```
+
+The above command returns a JSON object.
+
+### Language Detection Endpoint
+
+Call the `langdetection()` method and pass the text you want to analyze.
+
+```php
+client.lengdetection("<Text to analyze>")
+```
+
+The above command returns a JSON object.
+
+### Tokenization Endpoint
+
+Call the `tokens()` method and pass the text you want to tokenize.
+
+```php
+$client.tokens("<Your block of text>")
 ```
 
 The above command returns a JSON object.
