@@ -8,13 +8,18 @@ class NLPCloud
     const API_VERSION = 'v1';
     const BASE_URL = 'https://api.nlpcloud.io';
 
-    public function __construct($model, $token)
+    public function __construct($model, $token, $gpu)
     {
         $this->headers = array(
             'Authorization' => 'Token ' . $token,
             "User-Agent" => "nlploud-php-client",
         );
-        $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/' . $model;
+
+        if ($gpu) {
+            $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/gpu/' . $model;
+        } else {
+            $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/' . $model;
+        }
     }
 
     public function entities($text)
