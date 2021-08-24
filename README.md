@@ -146,7 +146,7 @@ Call the `generation()` method and pass the following arguments:
 1. `lengthPenalty`: Exponential penalty to the length, as a float. 1.0 means no penalty. Set to values < 1.0 in order to encourage the model to generate shorter sequences, or to a value > 1.0 in order to encourage the model to produce longer sequences. Defaults to 1.0.
 
 ```php
-client.generation("<Your input text>", null, null, null, null, null, null, null, null, null, null)
+client.generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>)
 ```
 
 ### Sentiment Analysis Endpoint
