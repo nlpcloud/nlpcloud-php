@@ -12,7 +12,7 @@ class NLPCloud
     {
         $this->headers = array(
             'Authorization' => 'Token ' . $token,
-            "User-Agent" => "nlploud-php-client",
+            'User-Agent' => 'nlpcloud-php-client',
         );
 
         if ($gpu) {
