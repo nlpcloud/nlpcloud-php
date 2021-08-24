@@ -60,6 +60,45 @@ class NLPCloud
         return $response->body;
     }
 
+    public function generation(
+        $text,
+        $minLength,
+        $maxLength,
+        $lengthNoInput,
+        $endSequence,
+        $removeInput,
+        $topK,
+        $topP,
+        $temperature,
+        $repetitionPenalty,
+        $lengthPenalty
+    ) {
+        $payload = array(
+            'text' => $text,
+            'min_length' => $minLength,
+            'max_length' => $maxLength,
+            'length_no_input' => $lengthNoInput,
+            'end_sequence' => $endSequence,
+            'remove_input' => $removeInput,
+            'top_k' => $topK,
+            'top_p' => $topP,
+            'temperature' => $temperature,
+            'repetition_penalty' => $repetitionPenalty,
+            'length_penalty' => $lengthPenalty
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'generation', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function sentiment($text)
     {
         $payload = array(
