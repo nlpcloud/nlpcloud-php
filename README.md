@@ -110,7 +110,7 @@ $client = new \NLPCloud\NLPCloud('<model>','<your token>', true);
 Call the `entities()` method and pass the text you want to perform named entity recognition (NER) on.
 
 ```php
-$client.entities('<Your block of text>')
+$client->entities('<Your block of text>')
 ```
 
 The above command returns a JSON object.
@@ -124,7 +124,7 @@ Call the `classification()` method and pass 3 arguments:
 1. Whether the classification should be multi-class or not, as a boolean
 
 ```php
-client.classification("<Your block of text>", array("label 1", "label 2", "..."), true|false)
+client->classification("<Your block of text>", array("label 1", "label 2", "..."), true|false)
 ```
 
 The above command returns a JSON object.
@@ -146,7 +146,7 @@ Call the `generation()` method and pass the following arguments:
 1. `lengthPenalty`: Exponential penalty to the length, as a float. 1.0 means no penalty. Set to values < 1.0 in order to encourage the model to generate shorter sequences, or to a value > 1.0 in order to encourage the model to produce longer sequences. Defaults to 1.0.
 
 ```php
-client.generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>)
+client->generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>)
 ```
 
 ### Sentiment Analysis Endpoint
@@ -154,7 +154,7 @@ client.generation(<Your input text>, <your min length>, <your max length>, <your
 Call the `sentiment()` method and pass the text you want to analyze the sentiment of:
 
 ```php
-client.sentiment("<Your block of text>")
+client->sentiment("<Your block of text>")
 ```
 
 The above command returns a JSON object.
@@ -167,7 +167,7 @@ Call the `question()` method and pass the following:
 1. Your question
 
 ```php
-client.question("<Your context>", "<Your question>")
+client->question("<Your context>", "<Your question>")
 ```
 
 The above command returns a JSON object.
@@ -178,7 +178,7 @@ Call the `summarization()` method and pass the text you want to summarize.
 
 
 ```php
-client.summarization("<Your text to summarize>")
+client->summarization("<Your text to summarize>")
 ```
 
 The above command returns a JSON object.
@@ -188,7 +188,7 @@ The above command returns a JSON object.
 Call the `translation()` method and pass the text you want to translate.
 
 ```php
-client.translation("<Your text to translate>")
+client->translation("<Your text to translate>")
 ```
 
 The above command returns a JSON object.
@@ -198,7 +198,7 @@ The above command returns a JSON object.
 Call the `langdetection()` method and pass the text you want to analyze.
 
 ```php
-client.lengdetection("<Text to analyze>")
+client->lengdetection("<Text to analyze>")
 ```
 
 The above command returns a JSON object.
@@ -208,7 +208,7 @@ The above command returns a JSON object.
 Call the `tokens()` method and pass the text you want to tokenize.
 
 ```php
-$client.tokens("<Your block of text>")
+$client->tokens("<Your block of text>")
 ```
 
 The above command returns a JSON object.
@@ -218,7 +218,7 @@ The above command returns a JSON object.
 Call the `dependencies()` method and pass the text you want to perform part of speech tagging (POS) + arcs on.
 
 ```php
-$client.dependencies("<Your block of text>")
+$client->dependencies("<Your block of text>")
 ```
 
 The above command returns a JSON object.
@@ -228,7 +228,7 @@ The above command returns a JSON object.
 Call the `sentenceDependencies()` method and pass a block of text made up of several sentencies you want to perform POS + arcs on.
 
 ```php
-$client.sentenceDependencies("<Your block of text>")
+$client->sentenceDependencies("<Your block of text>")
 ```
 
 The above command returns a JSON object.
@@ -238,7 +238,7 @@ The above command returns a JSON object.
 Call the `libVersions()` method to know the versions of the libraries used behind the hood with the model (for example the PyTorch, TensorFlow, and spaCy version used).
 
 ```php
-$client.libVersions()
+$client->libVersions()
 ```
 
 The above command returns a JSON object.
