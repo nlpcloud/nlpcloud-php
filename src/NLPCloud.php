@@ -67,11 +67,17 @@ class NLPCloud
         $lengthNoInput,
         $endSequence,
         $removeInput,
+        $doSample,
+        $numBeams,
+        $earlyStopping,
+        $noRepeatNgramSize,
+        $numReturnSequences,
         $topK,
         $topP,
         $temperature,
         $repetitionPenalty,
-        $lengthPenalty
+        $lengthPenalty,
+        $badWords
     ) {
         $payload = array(
             'text' => $text,
@@ -80,11 +86,17 @@ class NLPCloud
             'length_no_input' => $lengthNoInput,
             'end_sequence' => $endSequence,
             'remove_input' => $removeInput,
+            'do_sample' => $doSample,
+            'num_beams' => $numBeams,
+            'early_stopping' => $earlyStopping,
+            'no_repeat_ngram_size' => $noRepeatNgramSize,
+            'num_return_sequences' => $numReturnSequences,
             'top_k' => $topK,
             'top_p' => $topP,
             'temperature' => $temperature,
             'repetition_penalty' => $repetitionPenalty,
-            'length_penalty' => $lengthPenalty
+            'length_penalty' => $lengthPenalty,
+            'bad_words' => $badWords
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'generation', $payload)
             ->expectsJson()

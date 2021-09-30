@@ -139,14 +139,20 @@ Call the `generation()` method and pass the following arguments:
 1. `lengthNoInput`: Whether `minLength` and `maxLength` should not include the length of the input text, as a boolean. If false, `minLength` and `maxLength` include the length of the input text. If true, min_length and `maxLength` don't include the length of the input text. Defaults to false.
 1. `endSequence`: A specific token that should be the end of the generated sequence, as a string. For example if could be `.` or `\n` or `###` or anything else below 10 characters.
 1. `removeInput`: Whether you want to remove the input text form the result, as a boolean. Defaults to false.
+1. `doSample`: Whether or not to use sampling ; use greedy decoding otherwise, as a boolean. Defaults to true.
+1. `numBeams`: Number of beams for beam search. 1 means no beam search. This is an integer. Defaults to 1.
+1. `earlyStopping`: Whether to stop the beam search when at least num_beams sentences are finished per batch or not, as a boolean. Defaults to false.
+1. `noRepeatNgramSize`: If set to int > 0, all ngrams of that size can only occur once. This is an integer. Defaults to 0.
+1. `numReturnSequences`: The number of independently computed returned sequences for each element in the batch, as an integer. Defaults to 1.
 1. `topK`: The number of highest probability vocabulary tokens to keep for top-k-filtering, as an integer. Maximum 1000 tokens. Defaults to 0.
 1. `topP`: If set to float < 1, only the most probable tokens with probabilities that add up to top_p or higher are kept for generation. This is a float. Should be between 0 and 1. Defaults to 0.7.
 1. `temperature`: The value used to module the next token probabilities, as a float. Should be between 0 and 1. Defaults to 1.
 1. `repetitionPenalty`: The parameter for repetition penalty, as a float. 1.0 means no penalty. Defaults to 1.0.
 1. `lengthPenalty`: Exponential penalty to the length, as a float. 1.0 means no penalty. Set to values < 1.0 in order to encourage the model to generate shorter sequences, or to a value > 1.0 in order to encourage the model to produce longer sequences. Defaults to 1.0.
+1. `badWords`: List of tokens that are not allowed to be generated, as an array of strings. Defaults to null.
 
 ```php
-client->generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>)
+client->generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your do sample>, <your num beams>,  <your early stopping>, <your no repeat ngram size>, <your num return sequences>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>, array("bad word 1", "bad word 2", ...))
 ```
 
 ### Sentiment Analysis Endpoint
