@@ -204,7 +204,7 @@ The above command returns a JSON object.
 Call the `langdetection()` method and pass the text you want to analyze.
 
 ```php
-client->lengdetection("<Text to analyze>")
+client->langdetection("<Text to analyze>")
 ```
 
 The above command returns a JSON object.
