@@ -39,7 +39,7 @@ require 'vendor/autoload.php';
 use NLPCloud\NLPCloud;
 
 $client = new \NLPCloud\NLPCloud('en_core_web_lg','4eC39HqLyjWDarjtT1zdp7dc');
-$client->entities('John Doe is a Go Developer at Google);
+$client->entities('John Doe is a Go Developer at Google');
 ?>
 ```
 
@@ -52,7 +52,7 @@ require 'vendor/autoload.php';
 use NLPCloud\NLPCloud;
 
 $client = new \NLPCloud\NLPCloud('custom_model/7894','4eC39HqLyjWDarjtT1zdp7dc');
-$client->entities('John Doe is a Go Developer at Google);
+$client->entities('John Doe is a Go Developer at Google');
 ?>
 ```
 
@@ -204,7 +204,7 @@ The above command returns a JSON object.
 Call the `langdetection()` method and pass the text you want to analyze.
 
 ```php
-client->lengdetection("<Text to analyze>")
+client->langdetection("<Text to analyze>")
 ```
 
 The above command returns a JSON object.
