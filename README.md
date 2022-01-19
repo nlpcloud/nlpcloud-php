@@ -105,6 +105,14 @@ use NLPCloud\NLPCloud;
 $client = new \NLPCloud\NLPCloud('<model>','<your token>', true);
 ```
 
+If you want to use the multilingual add-on in order to process non-English texts, set `'<your language code>'` as a 4th argument. For example, if you want to process French text, you should set `'fr'`.
+
+```php
+use NLPCloud\NLPCloud;
+
+$client = new \NLPCloud\NLPCloud('<model>','<your token>', false, '<your language code>');
+```
+
 ### Entities Endpoint
 
 Call the `entities()` method and pass the text you want to perform named entity recognition (NER) on.
