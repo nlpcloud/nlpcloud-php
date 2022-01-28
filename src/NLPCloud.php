@@ -81,7 +81,8 @@ class NLPCloud
         $temperature,
         $repetitionPenalty,
         $lengthPenalty,
-        $badWords
+        $badWords,
+        $removeEndSequence
     ) {
         $payload = array(
             'text' => $text,
@@ -100,7 +101,8 @@ class NLPCloud
             'temperature' => $temperature,
             'repetition_penalty' => $repetitionPenalty,
             'length_penalty' => $lengthPenalty,
-            'bad_words' => $badWords
+            'bad_words' => $badWords,
+            'remove_end_sequence' => $removeEndSequence
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'generation', $payload)
             ->expectsJson()

@@ -146,6 +146,7 @@ Call the `generation()` method and pass the following arguments:
 1. `maxLength`: The maximum number of tokens that the generated text should contain, as an integer. The size of the generated text should not exceed 256 tokens on a CPU plan and 1024 tokens on GPU plan. If `lengthNoInput` is false, the size of the generated text is the difference between `maxLength` and the length of your input text. If `lengthNoInput` is true, the size of the generated text simply is `maxLength`. Defaults to 50.
 1. `lengthNoInput`: Whether `minLength` and `maxLength` should not include the length of the input text, as a boolean. If false, `minLength` and `maxLength` include the length of the input text. If true, min_length and `maxLength` don't include the length of the input text. Defaults to false.
 1. `endSequence`: A specific token that should be the end of the generated sequence, as a string. For example if could be `.` or `\n` or `###` or anything else below 10 characters.
+1. `removeEndSequence`: Whether you want to remove the end sequence form the result, as a boolean. Defaults to false.
 1. `removeInput`: Whether you want to remove the input text form the result, as a boolean. Defaults to false.
 1. `doSample`: Whether or not to use sampling ; use greedy decoding otherwise, as a boolean. Defaults to true.
 1. `numBeams`: Number of beams for beam search. 1 means no beam search. This is an integer. Defaults to 1.
@@ -160,7 +161,7 @@ Call the `generation()` method and pass the following arguments:
 1. `badWords`: List of tokens that are not allowed to be generated, as an array of strings. Defaults to null.
 
 ```php
-client->generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your do sample>, <your num beams>,  <your early stopping>, <your no repeat ngram size>, <your num return sequences>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>, array("bad word 1", "bad word 2", ...))
+client->generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your do sample>, <your num beams>,  <your early stopping>, <your no repeat ngram size>, <your num return sequences>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>, array("bad word 1", "bad word 2", ...), <your remove end sequence>)
 ```
 
 ### Sentiment Analysis Endpoint
