@@ -208,6 +208,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function semanticSimilarity($sentences)
+    {
+        $payload = array(
+            'sentences' => $sentences,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'semantic-similarity', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function tokens($text)
     {
         $payload = array(
@@ -250,6 +268,24 @@ class NLPCloud
             'text' => $text,
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'sentence-dependencies', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function embeddings($sentences)
+    {
+        $payload = array(
+            'sentences' => $sentences,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'embeddings', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)

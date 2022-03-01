@@ -191,7 +191,6 @@ The above command returns a JSON object.
 
 Call the `summarization()` method and pass the text you want to summarize.
 
-
 ```php
 client->summarization("<Your text to summarize>")
 ```
@@ -214,6 +213,16 @@ Call the `langdetection()` method and pass the text you want to analyze.
 
 ```php
 client->langdetection("<Text to analyze>")
+```
+
+The above command returns a JSON object.
+
+### Semantic Similarity Endpoint
+
+Call the `semanticSimilarity()` method and pass an array made up of 2 blocks of text that you want to compare.
+
+```php
+client.semanticSimilarity(array("<Block of text 1>", "<Block of text 2>"))
 ```
 
 The above command returns a JSON object.
@@ -248,6 +257,16 @@ $client->sentenceDependencies("<Your block of text>")
 
 The above command returns a JSON object.
 
+### Embeddings Endpoint
+
+Call the `embeddings()` method and pass an array of blocks of text that you want to extract embeddings from.
+
+```php
+client.embeddings(array("<Text 1>", "<Text 2>", "<Text 3>", ...))
+```
+
+The above command returns a JSON object.
+
 ### Library Versions Endpoint
 
 Call the `libVersions()` method to know the versions of the libraries used behind the hood with the model (for example the PyTorch, TensorFlow, and spaCy version used).
@@ -257,4 +276,3 @@ $client->libVersions()
 ```
 
 The above command returns a JSON object.
-
