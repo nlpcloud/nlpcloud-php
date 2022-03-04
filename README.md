@@ -178,8 +178,8 @@ The above command returns a JSON object.
 
 Call the `question()` method and pass the following:
 
-1. A context that the model will use to try to answer your question
 1. Your question
+1. A context that the model will use to try to answer your question
 
 ```php
 client->question("<Your question>","<Your context>")
