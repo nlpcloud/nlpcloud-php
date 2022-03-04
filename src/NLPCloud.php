@@ -26,10 +26,11 @@ class NLPCloud
         }
     }
 
-    public function entities($text)
+    public function entities($text, $searchedEntity)
     {
         $payload = array(
             'text' => $text,
+            'searched_entity' => $searchedEntity
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'entities', $payload)
             ->expectsJson()
@@ -49,7 +50,7 @@ class NLPCloud
         $payload = array(
             'text' => $text,
             'labels' => $labels,
-            'multiClass' => $multiClass
+            'multi_class' => $multiClass
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'classification', $payload)
             ->expectsJson()
@@ -135,11 +136,11 @@ class NLPCloud
         return $response->body;
     }
 
-    public function question($context, $question)
+    public function question($question, $context)
     {
         $payload = array(
-            'context' => $context,
-            'question' => $question
+            'question' => $question,
+            'context' => $context
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'question', $payload)
             ->expectsJson()
