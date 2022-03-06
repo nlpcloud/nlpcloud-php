@@ -197,6 +197,16 @@ client->summarization("<Your text to summarize>")
 
 The above command returns a JSON object.
 
+### Paraphrasing Endpoint
+
+Call the `paraphrasing()` method and pass the text you want to paraphrase.
+
+```php
+client->summarization("<Your text to paraphrase>")
+```
+
+The above command returns a JSON object.
+
 ### Translation Endpoint
 
 Call the `translation()` method and pass the text you want to translate.

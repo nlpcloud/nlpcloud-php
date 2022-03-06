@@ -173,6 +173,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function paraphrasing($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'paraphrasing', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function translation($text)
     {
         $payload = array(
