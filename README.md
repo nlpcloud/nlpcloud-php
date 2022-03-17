@@ -132,7 +132,7 @@ Call the `classification()` method and pass 3 arguments:
 1. Whether the classification should be multi-class or not, as a boolean
 
 ```php
-client->classification("<Your block of text>", array("label 1", "label 2", "..."), true|false)
+client->classification("<Your block of text>", array("label 1", "label 2", "..."), True|False)
 ```
 
 The above command returns a JSON object.
@@ -161,7 +161,7 @@ Call the `generation()` method and pass the following arguments:
 1. `badWords`: List of tokens that are not allowed to be generated, as an array of strings. Defaults to null.
 
 ```php
-client->generation(<Your input text>, <your min length>, <your max length>, <your length no input>, <your end sequence>, <your remove input>, <your do sample>, <your num beams>,  <your early stopping>, <your no repeat ngram size>, <your num return sequences>, <your top k>, <your top p>, <your temperature>, <your repetition penalty>, <your length penalty>, array("bad word 1", "bad word 2", ...), <your remove end sequence>)
+client->generation("<Your input text>")
 ```
 
 ### Sentiment Analysis Endpoint

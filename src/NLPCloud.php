@@ -26,7 +26,7 @@ class NLPCloud
         }
     }
 
-    public function entities($text, $searchedEntity)
+    public function entities($text, $searchedEntity = NULL)
     {
         $payload = array(
             'text' => $text,
@@ -45,7 +45,7 @@ class NLPCloud
         return $response->body;
     }
 
-    public function classification($text, $labels, $multiClass)
+    public function classification($text, $labels = NULL, $multiClass = True)
     {
         $payload = array(
             'text' => $text,
@@ -67,23 +67,23 @@ class NLPCloud
 
     public function generation(
         $text,
-        $minLength,
-        $maxLength,
-        $lengthNoInput,
-        $endSequence,
-        $removeInput,
-        $doSample,
-        $numBeams,
-        $earlyStopping,
-        $noRepeatNgramSize,
-        $numReturnSequences,
-        $topK,
-        $topP,
-        $temperature,
-        $repetitionPenalty,
-        $lengthPenalty,
-        $badWords,
-        $removeEndSequence
+        $minLength = NULL,
+        $maxLength = NULL,
+        $lengthNoInput = NULL,
+        $endSequence = NULL,
+        $removeInput = NULL,
+        $doSample = NULL,
+        $numBeams = NULL,
+        $earlyStopping = NULL,
+        $noRepeatNgramSize = NULL,
+        $numReturnSequences = NULL,
+        $topK = NULL,
+        $topP = NULL,
+        $temperature = NULL,
+        $repetitionPenalty = NULL,
+        $lengthPenalty = NULL,
+        $badWords = NULL,
+        $removeEndSequence = NULL
     ) {
         $payload = array(
             'text' => $text,
@@ -136,7 +136,7 @@ class NLPCloud
         return $response->body;
     }
 
-    public function question($question, $context)
+    public function question($question, $context = NULL)
     {
         $payload = array(
             'question' => $question,
