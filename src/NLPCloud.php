@@ -26,13 +26,31 @@ class NLPCloud
         }
     }
 
-    public function entities($text, $searchedEntity = NULL)
+    public function ad_generation($keywords)
+    {
+        $payload = array(
+            'keywords' => $keywords
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'ad-generation', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function chatbot($text, $history = NULL)
     {
         $payload = array(
             'text' => $text,
-            'searched_entity' => $searchedEntity
+            'history' => $history
         );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'entities', $payload)
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'chatbot', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
@@ -53,6 +71,61 @@ class NLPCloud
             'multi_class' => $multiClass
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'classification', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function dependencies($text)
+    {
+        $payload = array(
+            'text' => $text,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'dependencies', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function embeddings($sentences)
+    {
+        $payload = array(
+            'sentences' => $sentences,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'embeddings', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function entities($text, $searchedEntity = NULL)
+    {
+        $payload = array(
+            'text' => $text,
+            'searched_entity' => $searchedEntity
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'entities', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
@@ -118,12 +191,100 @@ class NLPCloud
         return $response->body;
     }
 
-    public function sentiment($text)
+    public function gsCorrection($text)
     {
         $payload = array(
             'text' => $text
         );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'sentiment', $payload)
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'gs-correction', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function intentClassification($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'intent-classification', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function kwKpExtraction($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'kw-kp-extraction', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function langdetection($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'langdetection', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function libVersions()
+    {
+        $response = \Httpful\Request::get($this->rootURL . '/' . 'versions')
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function paraphrasing($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'paraphrasing', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
@@ -155,84 +316,68 @@ class NLPCloud
         return $response->body;
     }
 
-    public function summarization($text)
-    {
-        $payload = array(
-            'text' => $text
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'summarization', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
-    public function paraphrasing($text)
-    {
-        $payload = array(
-            'text' => $text
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'paraphrasing', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
-    public function translation($text)
-    {
-        $payload = array(
-            'text' => $text
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'translation', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
-    public function langdetection($text)
-    {
-        $payload = array(
-            'text' => $text
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'langdetection', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
     public function semanticSimilarity($sentences)
     {
         $payload = array(
             'sentences' => $sentences,
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'semantic-similarity', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+
+    public function sentenceDependencies($text)
+    {
+        $payload = array(
+            'text' => $text,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'sentence-dependencies', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function sentiment($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'sentiment', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+
+    public function summarization($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'summarization', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
@@ -263,68 +408,16 @@ class NLPCloud
         return $response->body;
     }
 
-    public function dependencies($text)
+    public function translation($text)
     {
         $payload = array(
-            'text' => $text,
+            'text' => $text
         );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'dependencies', $payload)
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'translation', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)
             ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
-    public function sentenceDependencies($text)
-    {
-        $payload = array(
-            'text' => $text,
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'sentence-dependencies', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
-    public function embeddings($sentences)
-    {
-        $payload = array(
-            'sentences' => $sentences,
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'embeddings', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code != 200) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
-    public function libVersions()
-    {
-        $response = \Httpful\Request::get($this->rootURL . '/' . 'versions')
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
 
         if ($response->code != 200) {
             throw new \Exception($response->code . ': ' . $response->body->detail);

@@ -2,7 +2,7 @@
 
 This is the PHP client for the [NLP Cloud](https://nlpcloud.io) API. See the [documentation](https://docs.nlpcloud.io) for more details.
 
-NLP Cloud serves high performance pre-trained for NER, sentiment-analysis, classification, summarization, text generation, question answering, machine translation, language detection, tokenization, lemmatization, POS tagging, and dependency parsing. It is ready for production, served through a REST API.
+NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, paraphrasing, intent classification, product description and ad generation, chatbot, grammar and spelling correction, keywords and keyphrases extraction, text generation, question answering, machine translation, language detection, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API.
 
 You can either use the NLP Cloud pre-trained models, fine-tune your own models, or deploy your own models.
 
@@ -137,12 +137,22 @@ use NLPCloud\NLPCloud;
 $client = new \NLPCloud\NLPCloud('<model>','<your token>', false, '<your language code>');
 ```
 
-### Entities Endpoint
+### Product Description and Ad Generation
 
-Call the `entities()` method and pass the text you want to perform named entity recognition (NER) on.
+Call the `adGeneration()` method and pass a list of keywords you want to generate you product description or ad from.
 
 ```php
-$client->entities('<Your block of text>')
+$client->adGeneration(["Keyword 1", "Keyword 2", "Keyword 3", ...])
+```
+
+The above command returns a JSON object.
+
+### Chatbot
+
+Call the `chatbot()` method and pass your input. As an option, you can also pass a conversation history that is an array of named arrays. Each named array is made of an `input` and a `response` from the chatbot.
+
+```php
+$client.chatbot("Your input", [["input"=>"input 1","response"=>"response 1"], ["input"=>"input 2","response"=>"response 2"], ...])
 ```
 
 The above command returns a JSON object.
@@ -156,12 +166,42 @@ Call the `classification()` method and pass 3 arguments:
 1. Whether the classification should be multi-class or not, as a boolean
 
 ```php
-client->classification("<Your block of text>", array("label 1", "label 2", "..."), True|False)
+$client->classification("<Your block of text>", ["label 1", "label 2", ...], True|False)
 ```
 
 The above command returns a JSON object.
 
-### Text Generation Endpoint
+### Dependencies Endpoint
+
+Call the `dependencies()` method and pass the text you want to perform part of speech tagging (POS) + arcs on.
+
+```php
+$client->dependencies("<Your block of text>")
+```
+
+The above command returns a JSON object.
+
+### Embeddings Endpoint
+
+Call the `embeddings()` method and pass an array of blocks of text that you want to extract embeddings from.
+
+```php
+$client->embeddings(array("<Text 1>", "<Text 2>", "<Text 3>", ...))
+```
+
+The above command returns a JSON object.
+
+### Entities Endpoint
+
+Call the `entities()` method and pass the text you want to perform named entity recognition (NER) on.
+
+```php
+$client->entities('<Your block of text>')
+```
+
+The above command returns a JSON object.
+
+### Generation Endpoint
 
 Call the `generation()` method and pass the following arguments:
 
@@ -185,58 +225,35 @@ Call the `generation()` method and pass the following arguments:
 1. `badWords`: List of tokens that are not allowed to be generated, as an array of strings. Defaults to null.
 
 ```php
-client->generation("<Your input text>")
+$client->generation("<Your input text>")
 ```
 
-### Sentiment Analysis Endpoint
+### Grammar and Spelling Correction Endpoint
 
-Call the `sentiment()` method and pass the text you want to analyze the sentiment of:
-
-```php
-client->sentiment("<Your block of text>")
-```
-
-The above command returns a JSON object.
-
-### Question Answering Endpoint
-
-Call the `question()` method and pass the following:
-
-1. Your question
-1. A context that the model will use to try to answer your question
+Call the `gsCorrection()` method and pass the text you want correct:
 
 ```php
-client->question("<Your question>","<Your context>")
+$client.gsCorrection("<Your block of text>")
 ```
 
 The above command returns a JSON object.
 
-### Summarization Endpoint
+### Intent Classification Endpoint
 
-Call the `summarization()` method and pass the text you want to summarize.
+Call the `intentClassification()` method and pass the text you want to extract intents from:
 
 ```php
-client->summarization("<Your text to summarize>")
+$client.intentClassification("<Your block of text>")
 ```
 
 The above command returns a JSON object.
 
-### Paraphrasing Endpoint
+### Keywords and Keyphrases Extraction Endpoint
 
-Call the `paraphrasing()` method and pass the text you want to paraphrase.
-
-```php
-client->summarization("<Your text to paraphrase>")
-```
-
-The above command returns a JSON object.
-
-### Translation Endpoint
-
-Call the `translation()` method and pass the text you want to translate.
+Call the `kwKpExtraction()` method and pass the text you want to extract keywords and keyphrases from:
 
 ```php
-client->translation("<Your text to translate>")
+$client.kwKpExtraction("<Your block of text>")
 ```
 
 The above command returns a JSON object.
@@ -246,7 +263,27 @@ The above command returns a JSON object.
 Call the `langdetection()` method and pass the text you want to analyze.
 
 ```php
-client->langdetection("<Text to analyze>")
+$client->langdetection("<Text to analyze>")
+```
+
+The above command returns a JSON object.
+
+### Library Versions Endpoint
+
+Call the `libVersions()` method to know the versions of the libraries used behind the hood with the model (for example the PyTorch, TensorFlow, and spaCy version used).
+
+```php
+$client->libVersions()
+```
+
+The above command returns a JSON object.
+
+### Paraphrasing Endpoint
+
+Call the `paraphrasing()` method and pass the text you want to paraphrase.
+
+```php
+$client->summarization("<Your text to paraphrase>")
 ```
 
 The above command returns a JSON object.
@@ -256,27 +293,7 @@ The above command returns a JSON object.
 Call the `semanticSimilarity()` method and pass an array made up of 2 blocks of text that you want to compare.
 
 ```php
-client->semanticSimilarity(array("<Block of text 1>", "<Block of text 2>"))
-```
-
-The above command returns a JSON object.
-
-### Tokenization Endpoint
-
-Call the `tokens()` method and pass the text you want to tokenize.
-
-```php
-$client->tokens("<Your block of text>")
-```
-
-The above command returns a JSON object.
-
-### Dependencies Endpoint
-
-Call the `dependencies()` method and pass the text you want to perform part of speech tagging (POS) + arcs on.
-
-```php
-$client->dependencies("<Your block of text>")
+$client->semanticSimilarity(array("<Block of text 1>", "<Block of text 2>"))
 ```
 
 The above command returns a JSON object.
@@ -291,22 +308,55 @@ $client->sentenceDependencies("<Your block of text>")
 
 The above command returns a JSON object.
 
-### Embeddings Endpoint
+### Sentiment Analysis Endpoint
 
-Call the `embeddings()` method and pass an array of blocks of text that you want to extract embeddings from.
+Call the `sentiment()` method and pass the text you want to analyze the sentiment of:
 
 ```php
-client->embeddings(array("<Text 1>", "<Text 2>", "<Text 3>", ...))
+$client->sentiment("<Your block of text>")
 ```
 
 The above command returns a JSON object.
 
-### Library Versions Endpoint
+### Question Answering Endpoint
 
-Call the `libVersions()` method to know the versions of the libraries used behind the hood with the model (for example the PyTorch, TensorFlow, and spaCy version used).
+Call the `question()` method and pass the following:
+
+1. Your question
+1. A context that the model will use to try to answer your question
 
 ```php
-$client->libVersions()
+$client->question("<Your question>","<Your context>")
+```
+
+The above command returns a JSON object.
+
+### Summarization Endpoint
+
+Call the `summarization()` method and pass the text you want to summarize.
+
+```php
+$client->summarization("<Your text to summarize>")
+```
+
+The above command returns a JSON object.
+
+### Tokenization Endpoint
+
+Call the `tokens()` method and pass the text you want to tokenize.
+
+```php
+$client->tokens("<Your block of text>")
+```
+
+The above command returns a JSON object.
+
+### Translation Endpoint
+
+Call the `translation()` method and pass the text you want to translate.
+
+```php
+$client->translation("<Your text to translate>")
 ```
 
 The above command returns a JSON object.
