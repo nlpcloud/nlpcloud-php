@@ -15,6 +15,10 @@ class NLPCloud
             'User-Agent' => 'nlpcloud-php-client',
         );
 
+        if ($lang == 'en') {
+            $lang = '';
+        }
+
         if (($gpu) && ($lang != '')) {
             $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/gpu/' . $lang . '/' . $model;
         } elseif (($gpu) && ($lang == '')) {
