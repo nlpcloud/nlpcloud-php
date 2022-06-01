@@ -412,10 +412,12 @@ class NLPCloud
         return $response->body;
     }
 
-    public function translation($text)
+    public function translation($text, $source, $target)
     {
         $payload = array(
-            'text' => $text
+            'text' => $text,
+            'source' => $source,
+            'target' => $target
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'translation', $payload)
             ->expectsJson()
