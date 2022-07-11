@@ -48,6 +48,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function articleGeneration($title)
+    {
+        $payload = array(
+            'title' => $title
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'article-generation', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function chatbot($input, $history = NULL)
     {
         $payload = array(
@@ -75,6 +93,24 @@ class NLPCloud
             'multi_class' => $multiClass
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'classification', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function codeGeneration($instruction)
+    {
+        $payload = array(
+            'instruction' => $instruction
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'code-generation', $payload)
             ->expectsJson()
             ->sendsJson()
             ->addHeaders($this->headers)

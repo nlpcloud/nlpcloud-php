@@ -1,6 +1,6 @@
 {
     "name": "nlpcloud/nlpcloud-client",
-    "description": "NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, paraphrasing, grammar and spelling correction, keywords and keyphrases extraction, chatbot, product description and ad generation, intent classification, text generation, question answering, machine translation, language detection, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API. This is the PHP client for the API. More details here: https://nlpcloud.io. Documentation: https://docs.nlpcloud.io. Github: https://github.com/nlpcloud/nlpcloud-php",
+    "description": "NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, paraphrasing, grammar and spelling correction, keywords and keyphrases extraction, chatbot, product description and ad generation, intent classification, text generation, blog post generation, code generation, question answering, machine translation, language detection, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API. This is the PHP client for the API. More details here: https://nlpcloud.io. Documentation: https://docs.nlpcloud.io. Github: https://github.com/nlpcloud/nlpcloud-php",
     "homepage": "http://github.com/nlpcloud/nlpcloud-php",
     "license": "MIT",
     "keywords": [
