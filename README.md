@@ -159,10 +159,10 @@ The above command returns a JSON object.
 
 ### Chatbot Endpoint
 
-Call the `chatbot()` method and pass your input. As an option, you can also pass a conversation history that is an array of named arrays. Each named array is made of an `input` and a `response` from the chatbot.
+Call the `chatbot()` method and pass your input. As an option, you can also pass a context and a conversation history that is an array of named arrays. Each named array is made of an `input` and a `response` from the chatbot.
 
 ```php
-$client.chatbot("Your input", [["input"=>"input 1","response"=>"response 1"], ["input"=>"input 2","response"=>"response 2"], ...])
+$client.chatbot("Your input", "context", [["input"=>"input 1","response"=>"response 1"], ["input"=>"input 2","response"=>"response 2"], ...])
 ```
 
 The above command returns a JSON object.

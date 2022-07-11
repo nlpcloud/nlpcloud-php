@@ -66,10 +66,11 @@ class NLPCloud
         return $response->body;
     }
 
-    public function chatbot($input, $history = NULL)
+    public function chatbot($input, $context = NULL, $history = NULL)
     {
         $payload = array(
             'input' => $input,
+            'context' => $context,
             'history' => $history
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'chatbot', $payload)
