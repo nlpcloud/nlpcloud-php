@@ -38,7 +38,7 @@ require 'vendor/autoload.php';
 use NLPCloud\NLPCloud;
 
 $client = new \NLPCloud\NLPCloud('bart-large-cnn','4eC39HqLyjWDarjtT1zdp7dc');
-$client->summarization('One month after the United States began what has become a 
+echo json_encode($client->summarization('One month after the United States began what has become a 
   troubled rollout of a national COVID vaccination campaign, the effort is finally 
   gathering real steam. Close to a million doses -- over 951,000, to be more exact -- 
   made their way into the arms of Americans in the past 24 hours, the U.S. Centers 
@@ -49,7 +49,7 @@ $client->summarization('One month after the United States began what has become 
   gave states the OK to vaccinate anyone over 65 and said it would release all 
   the doses of vaccine it has available for distribution. Meanwhile, a number 
   of states have now opened mass vaccination sites in an effort to get larger 
-  numbers of people inoculated, CBS News reported.');
+  numbers of people inoculated, CBS News reported.'));
 ```
 
 Here is a full example that does the same thing, but on a GPU:
@@ -60,7 +60,7 @@ require 'vendor/autoload.php';
 use NLPCloud\NLPCloud;
 
 $client = new \NLPCloud\NLPCloud('bart-large-cnn','4eC39HqLyjWDarjtT1zdp7dc', True);
-$client->summarization('One month after the United States began what has become a 
+echo json_encode($client->summarization('One month after the United States began what has become a 
   troubled rollout of a national COVID vaccination campaign, the effort is finally 
   gathering real steam. Close to a million doses -- over 951,000, to be more exact -- 
   made their way into the arms of Americans in the past 24 hours, the U.S. Centers 
@@ -71,7 +71,7 @@ $client->summarization('One month after the United States began what has become 
   gave states the OK to vaccinate anyone over 65 and said it would release all 
   the doses of vaccine it has available for distribution. Meanwhile, a number 
   of states have now opened mass vaccination sites in an effort to get larger 
-  numbers of people inoculated, CBS News reported.');
+  numbers of people inoculated, CBS News reported.'));
 ```
 
 Here is a full example that does the same thing, but on a French text:
@@ -82,7 +82,7 @@ require 'vendor/autoload.php';
 use NLPCloud\NLPCloud;
 
 $client = new \NLPCloud\NLPCloud('bart-large-cnn','4eC39HqLyjWDarjtT1zdp7dc', True, 'fr');
-$client->summarization('Sur des images aériennes, prises la veille par un vol de surveillance 
+echo json_encode($client->summarization('Sur des images aériennes, prises la veille par un vol de surveillance 
   de la Nouvelle-Zélande, la côte d’une île est bordée d’arbres passés du vert 
   au gris sous l’effet des retombées volcaniques. On y voit aussi des immeubles
   endommagés côtoyer des bâtiments intacts. « D’après le peu d’informations
@@ -94,7 +94,7 @@ $client->summarization('Sur des images aériennes, prises la veille par un vol d
   Tonga, Tongatapu. La police locale, citée par les autorités néo-zélandaises,
   a également fait état de deux morts, dont une Britannique âgée de 50 ans,
   Angela Glover, emportée par le tsunami après avoir essayé de sauver les chiens
-  de son refuge, selon sa famille.');
+  de son refuge, selon sa famille.'));
 ```
 
 A json object is returned:
@@ -142,30 +142,30 @@ $client = new \NLPCloud\NLPCloud('<model>','<your token>', false, '<your languag
 Call the `adGeneration()` method and pass a list of keywords you want to generate you product description or ad from.
 
 ```php
-$client->adGeneration(["Keyword 1", "Keyword 2", "Keyword 3", ...])
+echo json_encode($client->adGeneration(["Keyword 1", "Keyword 2", "Keyword 3", ...]))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Article Generation Endpoint
 
 Call the `articleGeneration()` method and pass the title of the blog post your want to generate:
 
 ```php
-$client.articleGeneration("<Your title>")
+echo json_encode($client.articleGeneration("<Your title>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Chatbot Endpoint
 
 Call the `chatbot()` method and pass your input. As an option, you can also pass a context and a conversation history that is an array of named arrays. Each named array is made of an `input` and a `response` from the chatbot.
 
 ```php
-$client.chatbot("Your input", "context", [["input"=>"input 1","response"=>"response 1"], ["input"=>"input 2","response"=>"response 2"], ...])
+echo json_encode($client.chatbot("Your input", "context", [["input"=>"input 1","response"=>"response 1"], ["input"=>"input 2","response"=>"response 2"], ...]))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Classification Endpoint
 
@@ -176,50 +176,50 @@ Call the `classification()` method and pass 3 arguments:
 1. Whether the classification should be multi-class or not, as a boolean
 
 ```php
-$client->classification("<Your block of text>", ["label 1", "label 2", ...], True|False)
+echo json_encode($client->classification("<Your block of text>", ["label 1", "label 2", ...], True|False))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Code Generation Endpoint
 
 Call the `codeGeneration()` method and pass the description of your program:
 
 ```php
-$client.codeGeneration("<Your instruction>")
+echo json_encode($client.codeGeneration("<Your instruction>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Dependencies Endpoint
 
 Call the `dependencies()` method and pass the text you want to perform part of speech tagging (POS) + arcs on.
 
 ```php
-$client->dependencies("<Your block of text>")
+echo json_encode($client->dependencies("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Embeddings Endpoint
 
 Call the `embeddings()` method and pass an array of blocks of text that you want to extract embeddings from.
 
 ```php
-$client->embeddings(array("<Text 1>", "<Text 2>", "<Text 3>", ...))
+echo json_encode($client->embeddings(array("<Text 1>", "<Text 2>", "<Text 3>", ...)))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Entities Endpoint
 
 Call the `entities()` method and pass the text you want to perform named entity recognition (NER) on.
 
 ```php
-$client->entities('<Your block of text>')
+echo json_encode($client->entities('<Your block of text>'))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Generation Endpoint
 
@@ -245,7 +245,7 @@ Call the `generation()` method and pass the following arguments:
 1. (Optional) `bad_words`: List of tokens that are not allowed to be generated, as a list of strings. Defaults to null.
 
 ```php
-$client->generation("<Your input text>")
+echo json_encode($client->generation("<Your input text>"))
 ```
 
 ### Grammar and Spelling Correction Endpoint
@@ -253,90 +253,90 @@ $client->generation("<Your input text>")
 Call the `gsCorrection()` method and pass the text you want correct:
 
 ```php
-$client.gsCorrection("<Your block of text>")
+echo json_encode($client.gsCorrection("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Intent Classification Endpoint
 
 Call the `intentClassification()` method and pass the text you want to extract intents from:
 
 ```php
-$client.intentClassification("<Your block of text>")
+echo json_encode($client.intentClassification("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Keywords and Keyphrases Extraction Endpoint
 
 Call the `kwKpExtraction()` method and pass the text you want to extract keywords and keyphrases from:
 
 ```php
-$client.kwKpExtraction("<Your block of text>")
+echo json_encode($client.kwKpExtraction("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Language Detection Endpoint
 
 Call the `langdetection()` method and pass the text you want to analyze.
 
 ```php
-$client->langdetection("<Text to analyze>")
+echo json_encode($client->langdetection("<Text to analyze>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Library Versions Endpoint
 
 Call the `libVersions()` method to know the versions of the libraries used behind the hood with the model (for example the PyTorch, TensorFlow, and spaCy version used).
 
 ```php
-$client->libVersions()
+echo json_encode($client->libVersions())
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Paraphrasing Endpoint
 
 Call the `paraphrasing()` method and pass the text you want to paraphrase.
 
 ```php
-$client->summarization("<Your text to paraphrase>")
+echo json_encode($client->summarization("<Your text to paraphrase>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Semantic Similarity Endpoint
 
 Call the `semanticSimilarity()` method and pass an array made up of 2 blocks of text that you want to compare.
 
 ```php
-$client->semanticSimilarity(array("<Block of text 1>", "<Block of text 2>"))
+echo json_encode($client->semanticSimilarity(array("<Block of text 1>", "<Block of text 2>")))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Sentence Dependencies Endpoint
 
 Call the `sentenceDependencies()` method and pass a block of text made up of several sentencies you want to perform POS + arcs on.
 
 ```php
-$client->sentenceDependencies("<Your block of text>")
+echo json_encode($client->sentenceDependencies("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Sentiment Analysis Endpoint
 
 Call the `sentiment()` method and pass the text you want to analyze the sentiment of:
 
 ```php
-$client->sentiment("<Your block of text>")
+echo json_encode($client->sentiment("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Question Answering Endpoint
 
@@ -346,37 +346,37 @@ Call the `question()` method and pass the following:
 1. A context that the model will use to try to answer your question
 
 ```php
-$client->question("<Your question>","<Your context>")
+echo json_encode($client->question("<Your question>","<Your context>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Summarization Endpoint
 
 Call the `summarization()` method and pass the text you want to summarize.
 
 ```php
-$client->summarization("<Your text to summarize>")
+echo json_encode($client->summarization("<Your text to summarize>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Tokenization Endpoint
 
 Call the `tokens()` method and pass the text you want to tokenize.
 
 ```php
-$client->tokens("<Your block of text>")
+echo json_encode($client->tokens("<Your block of text>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
 
 ### Translation Endpoint
 
 Call the `translation()` method and pass the text you want to translate.
 
 ```php
-$client->translation("<Your text to translate>")
+echo json_encode($client->translation("<Your text to translate>"))
 ```
 
-The above command returns a JSON object.
+The above command returns an object.
