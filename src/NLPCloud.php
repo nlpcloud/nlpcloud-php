@@ -250,6 +250,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function imageGeneration($text)
+    {
+        $payload = array(
+            'text' => $text
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'image-generation', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function intentClassification($text)
     {
         $payload = array(

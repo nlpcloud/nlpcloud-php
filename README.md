@@ -258,6 +258,16 @@ echo json_encode($client.gsCorrection("<Your block of text>"))
 
 The above command returns an object.
 
+### Image Generation Endpoint
+
+Call the `imageGeneration()` method and pass the text you want to use to generate your image:
+
+```php
+echo json_encode($client.imageGeneration("<Your block of text>"))
+```
+
+The above command returns an object.
+
 ### Intent Classification Endpoint
 
 Call the `intentClassification()` method and pass the text you want to extract intents from:
@@ -267,6 +277,7 @@ echo json_encode($client.intentClassification("<Your block of text>"))
 ```
 
 The above command returns an object.
+
 
 ### Keywords and Keyphrases Extraction Endpoint
 
