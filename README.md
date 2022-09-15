@@ -2,7 +2,7 @@
 
 This is the PHP client for the [NLP Cloud](https://nlpcloud.io) API. See the [documentation](https://docs.nlpcloud.io) for more details.
 
-NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, dialogue summarization, paraphrasing, intent classification, product description and ad generation, chatbot, grammar and spelling correction, keywords and keyphrases extraction, text generation, image generation, blog post generation, code generation, question answering, machine translation, language detection, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API.
+NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, dialogue summarization, paraphrasing, intent classification, product description and ad generation, chatbot, grammar and spelling correction, keywords and keyphrases extraction, text generation, image generation, blog post generation, code generation, question answering, automatic speech recognition, machine translation, language detection, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API.
 
 You can either use the NLP Cloud pre-trained models, fine-tune your own models, or deploy your own models.
 
@@ -143,6 +143,16 @@ Call the `adGeneration()` method and pass a list of keywords you want to generat
 
 ```php
 echo json_encode($client->adGeneration(["Keyword 1", "Keyword 2", "Keyword 3", ...]))
+```
+
+The above command returns an object.
+
+### Automatic Speech Recognition (Speech to Text) Endpoint
+
+Call the `asr()` method and pass the url that hosts your audio or video file.
+
+```php
+echo json_encode($client->asr("your url"))
 ```
 
 The above command returns an object.
