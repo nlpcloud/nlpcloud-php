@@ -288,7 +288,6 @@ echo json_encode($client.intentClassification("<Your block of text>"))
 
 The above command returns an object.
 
-
 ### Keywords and Keyphrases Extraction Endpoint
 
 Call the `kwKpExtraction()` method and pass the text you want to extract keywords and keyphrases from:
@@ -325,6 +324,16 @@ Call the `paraphrasing()` method and pass the text you want to paraphrase.
 
 ```php
 echo json_encode($client->summarization("<Your text to paraphrase>"))
+```
+
+The above command returns an object.
+
+### Semantic Search Endpoint
+
+Call the `semanticSearch()` method and pass your search query:
+
+```php
+echo json_encode($client->semanticSearch("<Your search query>"))
 ```
 
 The above command returns an object.

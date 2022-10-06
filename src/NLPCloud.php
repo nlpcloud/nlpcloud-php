@@ -393,6 +393,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function semanticSearch($text)
+    {
+        $payload = array(
+            'text' => $text,
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'semantic-search', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code != 200) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
     public function semanticSimilarity($sentences)
     {
         $payload = array(
