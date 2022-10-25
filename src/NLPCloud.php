@@ -467,10 +467,11 @@ class NLPCloud
     }
 
 
-    public function summarization($text)
+    public function summarization($text, $size = NULL)
     {
         $payload = array(
-            'text' => $text
+            'text' => $text,
+            'size' => $size
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'summarization', $payload)
             ->expectsJson()
