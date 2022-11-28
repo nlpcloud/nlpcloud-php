@@ -137,6 +137,22 @@ use NLPCloud\NLPCloud;
 $client = new \NLPCloud\NLPCloud('<model>','<your token>', false, '<your language code>');
 ```
 
+If you want to make asynchronous requests, pass `true` as a 4th argument.
+
+```php
+use NLPCloud\NLPCloud;
+
+$client = new \NLPCloud\NLPCloud("<model>", "<your token>", false, '<your language code>', true);
+```
+
+If you are making asynchronous requests, you will always receive a quick response containing a URL. You should then poll this URL with `async_result()` on a regular basis (every 10 seconds for example) in order to check if the result is available. Here is an example:
+
+```php
+client.asyncResult("https://api.nlpcloud.io/v1/get-async-result/21718218-42e8-4be9-a67f-b7e18e03b436")
+```
+
+The above command returns an object.
+
 ### Ad Generation And Product Description Endpoint
 
 Call the `adGeneration()` method and pass a list of keywords you want to generate you product description or ad from.

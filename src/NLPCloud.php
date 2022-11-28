@@ -8,26 +8,32 @@ class NLPCloud
     const API_VERSION = 'v1';
     const BASE_URL = 'https://api.nlpcloud.io';
 
-    public function __construct($model, $token, $gpu = false, $lang = '')
+    public function __construct($model, $token, $gpu = false, $lang = '', $asynchronous = false)
     {
         $this->headers = array(
             'Authorization' => 'Token ' . $token,
             'User-Agent' => 'nlpcloud-php-client',
         );
 
+        $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/';
+
         if ($lang == 'en') {
             $lang = '';
         }
 
-        if (($gpu) && ($lang != '')) {
-            $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/gpu/' . $lang . '/' . $model;
-        } elseif (($gpu) && ($lang == '')) {
-            $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/gpu/' . $model;
-        } elseif (!($gpu) && ($lang != '')) {
-            $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/' . $lang . '/' . $model;
-        } else {
-            $this->rootURL = self::BASE_URL . '/' . self::API_VERSION . '/' . $model;
+        if ($gpu) {
+            $this->rootURL += 'gpu/';
         }
+
+        if ($lang != '') {
+            $this->rootURL += $lang + "/";
+        }
+
+        if ($asynchronous) {
+            $this->rootURL += "async/";
+        }
+
+        $this->rootURL += $model;
     }
 
     public function ad_generation($keywords)
@@ -41,7 +47,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -59,7 +65,22 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
+
+    public function asyncResult($url)
+    {
+        $response = \Httpful\Request::get($url)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -77,7 +98,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -97,7 +118,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -117,7 +138,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -135,7 +156,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -153,7 +174,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -171,7 +192,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -190,7 +211,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -243,7 +264,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -261,7 +282,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -279,7 +300,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -297,7 +318,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -315,7 +336,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -333,7 +354,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -349,7 +370,7 @@ class NLPCloud
             ->send();
 
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -367,7 +388,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -386,7 +407,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -404,7 +425,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -422,7 +443,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -441,7 +462,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -459,7 +480,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -479,7 +500,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -497,7 +518,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
@@ -517,7 +538,7 @@ class NLPCloud
             ->addHeaders($this->headers)
             ->send();
 
-        if ($response->code != 200) {
+        if ($response->code >= 400) {
             throw new \Exception($response->code . ': ' . $response->body->detail);
         }
 
