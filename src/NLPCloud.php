@@ -25,12 +25,12 @@ class NLPCloud
             $this->rootURL += 'gpu/';
         }
 
-        if ($lang != '') {
-            $this->rootURL += $lang + "/";
-        }
-
         if ($asynchronous) {
             $this->rootURL += "async/";
+        }
+
+        if ($lang != '') {
+            $this->rootURL += $lang + "/";
         }
 
         $this->rootURL += $model;
