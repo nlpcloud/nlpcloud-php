@@ -22,18 +22,18 @@ class NLPCloud
         }
 
         if ($gpu) {
-            $this->rootURL += 'gpu/';
+            $this->rootURL = $this->rootURL . 'gpu/';
         }
 
         if ($asynchronous) {
-            $this->rootURL += "async/";
+            $this->rootURL = $this->rootURL . 'async/';
         }
 
         if ($lang != '') {
-            $this->rootURL += $lang + "/";
+            $this->rootURL = $this->rootURL . $lang . '/';
         }
 
-        $this->rootURL += $model;
+        $this->rootURL = $this->rootURL . $model;
     }
 
     public function ad_generation($keywords)
