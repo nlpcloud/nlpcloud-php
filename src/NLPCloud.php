@@ -54,11 +54,12 @@ class NLPCloud
         return $response->body;
     }
 
-    public function asr($url = NULL, $encodedFile = NULL)
+    public function asr($url = NULL, $encodedFile = NULL, $inputLanguage = NULL)
     {
         $payload = array(
             'url' => $url,
-            'encoded_file' => $encodedFile
+            'encoded_file' => $encodedFile,
+            'input_language' => $inputLanguage
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'asr', $payload)
             ->expectsJson()
