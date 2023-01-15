@@ -37,7 +37,7 @@ require 'vendor/autoload.php';
 
 use NLPCloud\NLPCloud;
 
-$client = new NLPCloud('bart-large-cnn', '<Your API key>');
+$client = new NLPCloud('bart-large-cnn', '<your token>');
 echo json_encode($client->summarization('One month after the United States began what has become a 
   troubled rollout of a national COVID vaccination campaign, the effort is finally 
   gathering real steam. Close to a million doses -- over 951,000, to be more exact -- 
@@ -59,7 +59,7 @@ require 'vendor/autoload.php';
 
 use NLPCloud\NLPCloud;
 
-$client = new NLPCloud('bart-large-cnn', '<Your API key>', True);
+$client = new NLPCloud('bart-large-cnn', '<your token>', True);
 echo json_encode($client->summarization('One month after the United States began what has become a 
   troubled rollout of a national COVID vaccination campaign, the effort is finally 
   gathering real steam. Close to a million doses -- over 951,000, to be more exact -- 
@@ -81,7 +81,7 @@ require 'vendor/autoload.php';
 
 use NLPCloud\NLPCloud;
 
-$client = new NLPCloud('bart-large-cnn', '<Your API key>', True, 'fr');
+$client = new NLPCloud('bart-large-cnn', '<your token>', True, 'fr');
 echo json_encode($client->summarization('Sur des images aériennes, prises la veille par un vol de surveillance 
   de la Nouvelle-Zélande, la côte d’une île est bordée d’arbres passés du vert 
   au gris sous l’effet des retombées volcaniques. On y voit aussi des immeubles
