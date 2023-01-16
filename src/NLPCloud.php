@@ -36,7 +36,7 @@ class NLPCloud
         $this->rootURL = $this->rootURL . $model;
     }
 
-    public function ad_generation($keywords)
+    public function adGeneration($keywords)
     {
         $payload = array(
             'keywords' => $keywords
