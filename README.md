@@ -158,7 +158,7 @@ The above command returns an object.
 Call the `adGeneration()` method and pass a list of keywords you want to generate you product description or ad from.
 
 ```php
-echo json_encode($client->adGeneration(['Keyword 1', 'Keyword 2', 'Keyword 3', ...]));
+echo json_encode($client->adGeneration(array('Keyword 1', 'Keyword 2', 'Keyword 3', ...)));
 ```
 
 The above command returns an object.
@@ -188,7 +188,7 @@ The above command returns an object.
 Call the `chatbot()` method and pass your input. As an option, you can also pass a context and a conversation history that is an array of named arrays. Each named array is made of an `input` and a `response` from the chatbot.
 
 ```php
-echo json_encode($client->chatbot('Your input', 'context', [['input'=>'input 1','response'=>'response 1'], ['input'=>'input 2','response'=>'response 2'], ...]));
+echo json_encode($client->chatbot('Your input', 'context', array(array('input'=>'input 1','response'=>'response 1'), array('input'=>'input 2','response'=>'response 2'), ...)));
 ```
 
 The above command returns an object.
@@ -202,7 +202,7 @@ Call the `classification()` method and pass 3 arguments:
 1. Whether the classification should be multi-class or not, as a boolean
 
 ```php
-echo json_encode($client->classification('<Your block of text>', ['label 1', 'label 2', ...], True|False));
+echo json_encode($client->classification('<Your block of text>', array('label 1', 'label 2', ...), True|False));
 ```
 
 The above command returns an object.
@@ -232,7 +232,7 @@ The above command returns an object.
 Call the `embeddings()` method and pass an array of blocks of text that you want to extract embeddings from.
 
 ```php
-echo json_encode($client->embeddings(['<Text 1>', '<Text 2>', '<Text 3>', ...]));
+echo json_encode($client->embeddings(array('<Text 1>', '<Text 2>', '<Text 3>', ...)));
 ```
 
 The above command returns an object.
@@ -359,7 +359,7 @@ The above command returns an object.
 Call the `semanticSimilarity()` method and pass an array made up of 2 blocks of text that you want to compare.
 
 ```php
-echo json_encode($client->semanticSimilarity(['<Block of text 1>', '<Block of text 2>']));
+echo json_encode($client->semanticSimilarity(array('<Block of text 1>', '<Block of text 2>')));
 ```
 
 The above command returns an object.
