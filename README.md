@@ -165,10 +165,14 @@ The above command returns an object.
 
 ### Automatic Speech Recognition (Speech to Text) Endpoint
 
-Call the `asr()` method and pass the url that hosts your audio or video file.
+Call the `asr()` method and pass the following arguments:
+
+1. (Optional: either this or the encoded file should be set) `url`: a URL where your audio or video file is hosted
+1. (Optional: either this or the url should be set) `encodedFile`: a base 64 encoded version of your file
+1. (Optional) `inputLanguage`: the language of your file as ISO code
 
 ```php
-echo json_encode($client->asr('your url'));
+echo json_encode($client->asr('<Your url>'));
 ```
 
 The above command returns an object.
@@ -188,7 +192,7 @@ The above command returns an object.
 Call the `chatbot()` method and pass your input. As an option, you can also pass a context and a conversation history that is an array of named arrays. Each named array is made of an `input` and a `response` from the chatbot.
 
 ```php
-echo json_encode($client->chatbot('Your input', 'context', array(array('input'=>'input 1','response'=>'response 1'), array('input'=>'input 2','response'=>'response 2'), ...)));
+echo json_encode($client->chatbot('<Your input>', '<Your context>', array(array('input'=>'input 1','response'=>'response 1'), array('input'=>'input 2','response'=>'response 2'), ...)));
 ```
 
 The above command returns an object.
