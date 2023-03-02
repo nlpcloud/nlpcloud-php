@@ -416,10 +416,11 @@ class NLPCloud
         return $response->body;
     }
 
-    public function semanticSearch($text)
+    public function semanticSearch($text, $numResults = NULL)
     {
         $payload = array(
             'text' => $text,
+            'num_results' => $numResults,
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'semantic-search', $payload)
             ->expectsJson()
