@@ -238,7 +238,8 @@ class NLPCloud
         $repetitionPenalty = NULL,
         $lengthPenalty = NULL,
         $badWords = NULL,
-        $removeEndSequence = NULL
+        $removeEndSequence = NULL,
+        $isInstruct = NULL
     ) {
         $payload = array(
             'text' => $text,
@@ -258,7 +259,8 @@ class NLPCloud
             'repetition_penalty' => $repetitionPenalty,
             'length_penalty' => $lengthPenalty,
             'bad_words' => $badWords,
-            'remove_end_sequence' => $removeEndSequence
+            'remove_end_sequence' => $removeEndSequence,
+            'in_instruct' => $isInstruct
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'generation', $payload)
             ->expectsJson()
