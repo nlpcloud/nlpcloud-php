@@ -348,6 +348,19 @@ echo json_encode($client->paraphrasing('<Your text to paraphrase>'));
 
 The above command returns an object.
 
+### Question Answering Endpoint
+
+Call the `question()` method and pass the following:
+
+1. Your question
+1. A context that the model will use to try to answer your question
+
+```php
+echo json_encode($client->question('<Your question>','<Your context>'));
+```
+
+The above command returns an object.
+
 ### Semantic Search Endpoint
 
 Call the `semanticSearch()` method and pass your search query:
@@ -388,18 +401,15 @@ echo json_encode($client->sentiment('<Your block of text>'));
 
 The above command returns an object.
 
-### Question Answering Endpoint
+### Speech Synthesis Endpoint
 
-Call the `question()` method and pass the following:
-
-1. Your question
-1. A context that the model will use to try to answer your question
+Call the `speechSynthesis()` method and pass the text you want to convert to audio:
 
 ```php
-echo json_encode($client->question('<Your question>','<Your context>'));
+echo json_encode($client->speechSynthesis('<Your block of text>'));
 ```
 
-The above command returns an object.
+The above command returns a JSON object.
 
 ### Summarization Endpoint
 

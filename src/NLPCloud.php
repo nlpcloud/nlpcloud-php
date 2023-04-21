@@ -492,6 +492,24 @@ class NLPCloud
         return $response->body;
     }
 
+    public function speechSynthesis($text, $voice = NULL)
+    {
+        $payload = array(
+            'text' => $text,
+            'voice' => $voice
+        );
+        $response = \Httpful\Request::post($this->rootURL . '/' . 'speech-synthesis', $payload)
+            ->expectsJson()
+            ->sendsJson()
+            ->addHeaders($this->headers)
+            ->send();
+
+        if ($response->code >= 400) {
+            throw new \Exception($response->code . ': ' . $response->body->detail);
+        }
+
+        return $response->body;
+    }
 
     public function summarization($text, $size = NULL)
     {
