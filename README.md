@@ -81,7 +81,7 @@ require 'vendor/autoload.php';
 
 use NLPCloud\NLPCloud;
 
-$client = new NLPCloud('bart-large-cnn', '<your token>', True, 'fr');
+$client = new NLPCloud('bart-large-cnn', '<your token>', True, 'fra_Latn');
 echo json_encode($client->summarization('Sur des images aériennes, prises la veille par un vol de surveillance 
   de la Nouvelle-Zélande, la côte d’une île est bordée d’arbres passés du vert 
   au gris sous l’effet des retombées volcaniques. On y voit aussi des immeubles
@@ -129,7 +129,7 @@ use NLPCloud\NLPCloud;
 $client = new NLPCloud('<model>','<your token>', true);
 ```
 
-If you want to use the multilingual add-on in order to process non-English texts, set `'<your language code>'` as a 4th argument. For example, if you want to process French text, you should set `'fr'`.
+If you want to use the multilingual add-on in order to process non-English texts, set `'<your language code>'` as a 4th argument. For example, if you want to process French text, you should set `'fra_Latn'`.
 
 ```php
 use NLPCloud\NLPCloud;
