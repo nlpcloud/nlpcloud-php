@@ -89,24 +89,6 @@ class NLPCloud
         return $response->body;
     }
 
-    public function articleGeneration($title)
-    {
-        $payload = array(
-            'title' => $title
-        );
-        $response = \Httpful\Request::post($this->rootURL . '/' . 'article-generation', $payload)
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-        if ($response->code >= 400) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
     public function chatbot($input, $context = NULL, $history = NULL)
     {
         $payload = array(

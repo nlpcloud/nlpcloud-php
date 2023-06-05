@@ -2,7 +2,7 @@
 
 This is the PHP client for the [NLP Cloud](https://nlpcloud.io) API. See the [documentation](https://docs.nlpcloud.io) for more details.
 
-NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, dialogue summarization, paraphrasing, intent classification, product description and ad generation, chatbot, grammar and spelling correction, keywords and keyphrases extraction, text generation, image generation, blog post generation, code generation, question answering, automatic speech recognition, machine translation, language detection, semantic search, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API.
+NLP Cloud serves high performance pre-trained or custom models for NER, sentiment-analysis, classification, summarization, dialogue summarization, paraphrasing, intent classification, product description and ad generation, chatbot, grammar and spelling correction, keywords and keyphrases extraction, text generation, image generation, code generation, question answering, automatic speech recognition, machine translation, language detection, semantic search, semantic similarity, tokenization, POS tagging, embeddings, and dependency parsing. It is ready for production, served through a REST API.
 
 You can either use the NLP Cloud pre-trained models, fine-tune your own models, or deploy your own models.
 
@@ -173,16 +173,6 @@ Call the `asr()` method and pass the following arguments:
 
 ```php
 echo json_encode($client->asr('<Your url>'));
-```
-
-The above command returns an object.
-
-### Article Generation Endpoint
-
-Call the `articleGeneration()` method and pass the title of the blog post your want to generate:
-
-```php
-echo json_encode($client->articleGeneration('<Your title>'));
 ```
 
 The above command returns an object.
