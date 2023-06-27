@@ -20,6 +20,10 @@ class NLPCloud
         if ($lang == 'en') {
             $lang = '';
         }
+        if ($lang == 'eng_Latn') {
+            $lang = '';
+        }
+
 
         if ($gpu) {
             $this->rootURL = $this->rootURL . 'gpu/';
