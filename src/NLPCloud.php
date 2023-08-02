@@ -208,45 +208,33 @@ class NLPCloud
 
     public function generation(
         $text,
-        $minLength = NULL,
         $maxLength = NULL,
         $lengthNoInput = NULL,
         $endSequence = NULL,
         $removeInput = NULL,
-        $doSample = NULL,
         $numBeams = NULL,
-        $earlyStopping = NULL,
-        $noRepeatNgramSize = NULL,
         $numReturnSequences = NULL,
         $topK = NULL,
         $topP = NULL,
         $temperature = NULL,
         $repetitionPenalty = NULL,
-        $lengthPenalty = NULL,
         $badWords = NULL,
-        $removeEndSequence = NULL,
-        $isInstruct = NULL
+        $removeEndSequence = NULL
     ) {
         $payload = array(
             'text' => $text,
-            'min_length' => $minLength,
             'max_length' => $maxLength,
             'length_no_input' => $lengthNoInput,
             'end_sequence' => $endSequence,
             'remove_input' => $removeInput,
-            'do_sample' => $doSample,
             'num_beams' => $numBeams,
-            'early_stopping' => $earlyStopping,
-            'no_repeat_ngram_size' => $noRepeatNgramSize,
             'num_return_sequences' => $numReturnSequences,
             'top_k' => $topK,
             'top_p' => $topP,
             'temperature' => $temperature,
             'repetition_penalty' => $repetitionPenalty,
-            'length_penalty' => $lengthPenalty,
             'bad_words' => $badWords,
-            'remove_end_sequence' => $removeEndSequence,
-            'in_instruct' => $isInstruct
+            'remove_end_sequence' => $removeEndSequence
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'generation', $payload)
             ->expectsJson()
