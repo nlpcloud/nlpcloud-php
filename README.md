@@ -151,7 +151,7 @@ If you are making asynchronous requests, you will always receive a quick respons
 $client->asyncResult('https://api.nlpcloud.io/v1/get-async-result/21718218-42e8-4be9-a67f-b7e18e03b436');
 ```
 
-The above command returns an object.
+The above command returns an object if the response is availble. It returns nothing otherwise (`NULL`).
 
 ### Automatic Speech Recognition (Speech to Text) Endpoint
 
