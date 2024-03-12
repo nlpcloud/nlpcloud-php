@@ -339,22 +339,6 @@ class NLPCloud
         return $response->body;
     }
 
-    public function libVersions()
-    {
-        $response = \Httpful\Request::get($this->rootURL . '/' . 'versions')
-            ->expectsJson()
-            ->sendsJson()
-            ->addHeaders($this->headers)
-            ->send();
-
-
-        if ($response->code >= 400) {
-            throw new \Exception($response->code . ': ' . $response->body->detail);
-        }
-
-        return $response->body;
-    }
-
     public function paraphrasing($text)
     {
         $payload = array(

@@ -303,16 +303,6 @@ echo json_encode($client->langdetection('<Text to analyze>'));
 
 The above command returns an object.
 
-### Library Versions Endpoint
-
-Call the `libVersions()` method to know the versions of the libraries used behind the hood with the model (for example the PyTorch, TensorFlow, and spaCy version used).
-
-```php
-echo json_encode($client->libVersions());
-```
-
-The above command returns an object.
-
 ### Paraphrasing Endpoint
 
 Call the `paraphrasing()` method and pass the text you want to paraphrase.
