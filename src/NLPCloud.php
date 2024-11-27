@@ -8,6 +8,9 @@ class NLPCloud
     const API_VERSION = 'v1';
     const BASE_URL = 'https://api.nlpcloud.io';
 
+    protected $headers;
+    protected $rootURL;
+
     public function __construct($model, $token, $gpu = false, $lang = '', $asynchronous = false)
     {
         $this->headers = array(
