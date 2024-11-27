@@ -318,7 +318,7 @@ The above command returns an object.
 Call the `question()` method and pass the following:
 
 1. Your question
-1. A context that the model will use to try to answer your question
+1. (Optional) A context that the model will use to try to answer your question
 
 ```php
 echo json_encode($client->question('<Your question>','<Your context>'));
@@ -358,10 +358,14 @@ The above command returns an object.
 
 ### Sentiment Analysis Endpoint
 
-Call the `sentiment()` method and pass the text you want to analyze the sentiment of:
+Call the `sentiment()` method and pass the following:
+
+1. The text you want to analyze and get the sentiment of
+1. (Optional) The target element that the sentiment should apply to
+
 
 ```php
-echo json_encode($client->sentiment('<Your block of text>'));
+echo json_encode($client->sentiment('<Your block of text>', '<Your target element>'));
 ```
 
 The above command returns an object.

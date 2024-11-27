@@ -432,10 +432,11 @@ class NLPCloud
         return $response->body;
     }
 
-    public function sentiment($text)
+    public function sentiment($text, $target = NULL)
     {
         $payload = array(
-            'text' => $text
+            'text' => $text,
+            'target' => $target
         );
         $response = \Httpful\Request::post($this->rootURL . '/' . 'sentiment', $payload)
             ->expectsJson()
